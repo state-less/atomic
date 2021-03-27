@@ -1,0 +1,15 @@
+{
+  "name": "@state-less/atomic",
+  "version": "0.0.1",
+  "description": "Generate atomic update equations for databases.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "moritz.roessler@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "nerdamer": "^1.1.6"
+  },
+  "devDependencies": {}
+}

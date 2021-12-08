@@ -43,8 +43,10 @@ const getArgsFromTree = (tree) => {
 }
 const compile = (trees) => {
     if (!Array.isArray(trees)) {
-        const [key, operator, delta] = getArgsFromTree(trees[0]);
-        return 'SET ' + UpdateExpression(key, operator, +delta);
+        const [key, operator, delta] = getArgsFromTree(trees);
+        const expr = UpdateExpression(key, operator, +delta);
+        expr.UpdateExpression = 'SET ' + expr.UpdateExpression.slice(0);
+        return expr;
     }
 
     const expression = trees.reduce((acc, tree, i) => {

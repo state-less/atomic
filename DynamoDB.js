@@ -14,7 +14,7 @@ const UpdateExpression = (key, operator, delta, index = null) => {
         UpdateExpression = `${attributeNameKey} = ${attributeNameKey} ${operator} ${attributeValueDelta}`;
     }
 
-    return ({
+    const expr = ({
         UpdateExpression,
         ExpressionAttributeValues: {
             [`${attributeValueDelta}${indexName}`]: delta,
@@ -25,6 +25,11 @@ const UpdateExpression = (key, operator, delta, index = null) => {
         },
         ReturnValues: "UPDATED_NEW"
     })
+
+    if (!index)
+        delete expr.ExpressionAttributeNames[`${attributeNameIndex}${indexName}`];
+
+    return expr;
 }
 
 const getArgsFromTree = (tree) => {
@@ -38,7 +43,7 @@ const getArgsFromTree = (tree) => {
 
     const key = [lval, rval].find((v) => v != +v);
     const delta = [lval, rval].find((v) => v == +v);
-    
+
     return [key, operator, delta];
 }
 const compile = (trees) => {

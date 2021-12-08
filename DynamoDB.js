@@ -33,7 +33,7 @@ const UpdateExpression = (key, operator, delta, index = null) => {
 }
 
 const getArgsFromTree = (tree) => {
-    const { value: operator, left: { value: lval }, right: { value: rval } } = tree;
+    let { value: operator, left: { value: lval }, right: { value: rval } } = tree;
 
     /**
      * If the LHS in the AST contains a '-' operator we'll treat it as negative number and take it's lhs value

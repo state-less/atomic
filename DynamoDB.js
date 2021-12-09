@@ -72,6 +72,10 @@ const compile = (trees) => {
         }
         return acc;
     }, { UpdateExpression: '' })
+
+    if (!expression.UpdateExpression)
+        return null
+        
     expression.UpdateExpression = 'SET ' + expression.UpdateExpression.slice(0, -2)
     return expression
 }
